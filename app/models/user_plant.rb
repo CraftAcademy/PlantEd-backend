@@ -17,7 +17,7 @@ class UserPlant < ApplicationRecord
       data = {notification: "#{self.user.email.split('@').first.humanize}, #{self.plant.name} needs to be watered!",
               user_id: self.user.id}
       BroadcastNotificationJob.perform_now(data)
-    end if self.frequency
+    end if self.frequency && self.frequency != 0
   end
 
 end
